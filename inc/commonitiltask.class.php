@@ -1339,7 +1339,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     * @param $options   array
     *     -  parent Object : the object
     *
-    * @return bool
+    * @return boolean
     */
    function showForm($ID, $options = []) {
       global $DB, $CFG_GLPI;
@@ -1660,7 +1660,7 @@ abstract class CommonITILTask  extends CommonDBTM {
     *
     * @param $item   CommonITILObject
     *
-    * @return bool
+    * @return boolean
     */
    function showSummary(CommonITILObject $item) {
       global $DB, $CFG_GLPI;

@@ -141,7 +141,7 @@ class Computer extends CommonDBTM {
 
    /**
     * @see CommonDBTM::post_updateItem()
-    * @param int $history
+    * @param integer $history
     */
    function post_updateItem($history = 1) {
       global $DB, $CFG_GLPI;
@@ -354,7 +354,7 @@ class Computer extends CommonDBTM {
     *     - target for the Form
     *     - withtemplate template or basic computer
     *
-    *@return Nothing (display)
+    * @return void (display)
    **/
    function showForm($ID, $options = []) {
       global $CFG_GLPI, $DB;
