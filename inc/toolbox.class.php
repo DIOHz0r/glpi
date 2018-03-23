@@ -52,7 +52,7 @@ class Toolbox {
     * @since version 0.84
     *
     * @return integer
-   **/
+    */
    static function get_max_input_vars() {
 
       $max = ini_get('max_input_vars');  // Security limit since PHP 5.3.9
@@ -71,7 +71,7 @@ class Toolbox {
     * @param $str string to change
     *
     * @return string changed
-   **/
+    */
    static function ucfirst($str) {
 
       if ($str{0} >= "\xc3") {
@@ -91,7 +91,7 @@ class Toolbox {
     * @param $shortcut           letter of shortcut
     *
     * @return string
-   **/
+    */
 
    static function shortcut($str, $shortcut) {
 
@@ -131,7 +131,7 @@ class Toolbox {
     * @param $pad_type     integer  padding type (default STR_PAD_RIGHT)
     *
     * @return string
-   **/
+    */
    static function str_pad($input, $pad_length, $pad_string = " ", $pad_type = STR_PAD_RIGHT) {
 
        $diff = (strlen($input) - self::strlen($input));
@@ -159,7 +159,7 @@ class Toolbox {
     * @param $length    integer  The maximum length of the returned string if > 0 (default -1)
     *
     * @return string
-   **/
+    */
    static function substr($str, $start, $length = -1) {
 
       if ($length == -1) {
@@ -175,7 +175,7 @@ class Toolbox {
     * @param $str string
     *
     * @return string lowercase
-   **/
+    */
    static function strtolower($str) {
       return mb_strtolower($str, "UTF-8");
    }
@@ -187,7 +187,7 @@ class Toolbox {
     * @param $str string
     *
     * @return string uppercase
-   **/
+    */
    static function strtoupper($str) {
       return mb_strtoupper($str, "UTF-8");
    }
@@ -199,7 +199,7 @@ class Toolbox {
     * @param $str string   string to analyze
     *
     * @return  boolean
-   **/
+    */
    static function seems_utf8($str) {
       return mb_check_encoding($str, "UTF-8");
    }
@@ -264,7 +264,7 @@ class Toolbox {
     * @param $key       string key used to decrypt
     *
     * @return string decrypted
-   **/
+    */
    static function decrypt($string, $key) {
 
       $result = '';
@@ -383,7 +383,7 @@ class Toolbox {
 
    /**
     * Log in 'php-errors' all args
-   **/
+    */
    static function logDebug() {
       static $tps = 0;
 
@@ -430,15 +430,15 @@ class Toolbox {
    /**
     * Generate a Backtrace
     *
-    * @param $log    String    log file name (default php-errors)
+    * @param $log    string    log file name (default php-errors)
     *                          if false, return the strung
-    * @param $hide   String    call to hide (but display script/line) (default '')
-    * @param $skip   Array     of call to not display at all
+    * @param $hide   string    call to hide (but display script/line) (default '')
+    * @param $skip   array     of call to not display at all
     *
     * @since version 0.85
     *
     * @return string if $log is false
-   **/
+    */
    static function backtrace($log = 'php-errors', $hide = '', Array $skip = []) {
 
       if (function_exists("debug_backtrace")) {
@@ -592,7 +592,7 @@ class Toolbox {
     * @param $errmsg    string   error message.
     * @param $filename  string   filename that the error was raised in.
     * @param $linenum   integer  line number the error was raised at.
-   **/
+    */
    static function userErrorHandlerDebug($errno, $errmsg, $filename, $linenum) {
 
       // For file record
@@ -612,13 +612,13 @@ class Toolbox {
    /**
     * Switch error mode for GLPI
     *
-    * @param $mode         Integer  from Session::*_MODE (default NULL)
-    * @param $debug_sql    Boolean  (default NULL)
-    * @param $debug_vars   Boolean  (default NULL)
-    * @param $log_in_files Boolean  (default NULL)
+    * @param $mode         integer  from Session::*_MODE (default NULL)
+    * @param $debug_sql    boolean  (default NULL)
+    * @param $debug_vars   boolean  (default NULL)
+    * @param $log_in_files boolean  (default NULL)
     *
     * @since version 0.84
-   **/
+    */
    static function setDebugMode($mode = null, $debug_sql = null, $debug_vars = null, $log_in_files = null) {
       global $CFG_GLPI;
 
@@ -664,12 +664,12 @@ class Toolbox {
     * Send a file (not a document) to the navigator
     * See Document->send();
     *
-    * @param $file      string: storage filename
-    * @param $filename  string: file title
-    * @param $mime      string: file mime type
+    * @param string $file     storage filename
+    * @param string $filename file title
+    * @param string $mime     file mime type
     *
     * @return void
-   **/
+     */
    static function sendFile($file, $filename, $mime = null) {
 
       // Test securite : document in DOC_DIR
@@ -749,7 +749,7 @@ class Toolbox {
    /**
     *  Add slash for variable & array
     *
-    * @param $value array or string: value to add slashes (array or string)
+    * @param array|string $value to add slashes (array or string)
     *
     * @return array|null|resource|string
     */
@@ -776,7 +776,7 @@ class Toolbox {
    /**
     * Strip slash  for variable & array
     *
-    * @param $value     array or string: item to stripslashes (array or string)
+    * @param array|string $value item to stripslashes (array or string)
     *
     * @return array|null|resource|string
     */
@@ -795,11 +795,12 @@ class Toolbox {
    /**
     * Converts an array of parameters into a query string to be appended to a URL.
     *
-    * @param $array     array parameters to append to the query string.
+    * @param array  $array     parameters to append to the query string.
     * @param string $separator separator may be defined as &amp; to display purpose
-    *                         (default '&')
-    * @param string $parent This should be left blank (it is used internally by the function).
-    *                         (default '')
+    *                          (default '&')
+    * @param string $parent    This should be left blank (it is used internally by the function).
+    *                          (default '')
+    *
     * @return string : Query string to append to a URL.
     */
    static function append_params($array, $separator = '&', $parent = '') {
@@ -1028,10 +1029,10 @@ class Toolbox {
     * Check SELinux configuration
     *
     * @since version 0.84
-    * @param $fordebug    Boolean true is displayed in system information
+    * @param $fordebug    boolean true is displayed in system information
     *
     *  @return integer 0: OK, 1:Warning, 2:Error
-   **/
+    */
    static function checkSELinux($fordebug = false) {
       global $CFG_GLPI;
 
@@ -1112,7 +1113,7 @@ class Toolbox {
     * @param $path string: directory or file to get size
     *
     * @return integer size of the $path
-   **/
+    */
    static function filesizeDirectory($path) {
 
       if (!is_dir($path)) {
@@ -1140,7 +1141,7 @@ class Toolbox {
     * @param   $size integer: Size in octet
     *
     * @return string formatted size
-   **/
+    */
    static function getSize($size) {
 
       //TRANS: list of unit (o for octet)
@@ -1161,7 +1162,7 @@ class Toolbox {
     * Delete a directory and file contains in it
     *
     * @param $dir string: directory to delete
-   **/
+    */
    static function deleteDir($dir) {
 
       if (file_exists($dir)) {
@@ -1196,16 +1197,17 @@ class Toolbox {
     *
     * @since version 0.85
     *
-    * @param $source_path   string   path of the picture to be resized
-    * @param $dest_path     string   path of the new resized picture
-    * @param integer|string $new_width string   new width after resized (default 71)
-    * @param integer|string $new_height string   new height after resized (default 71)
-    * @param integer|string $img_y string   y axis of picture (default 0)
-    * @param integer|string $img_x string   x axis of picture (default 0)
-    * @param integer|string $img_width string   width of picture (default 0)
-    * @param integer|string $img_height string   height of picture (default 0)
-    * @param $max_size      integer  max size of the picture (default 500, is set to 0 no resize)
-    * @return boolean : true or false
+    * @param string  $source_path path of the picture to be resized
+    * @param string  $dest_path   path of the new resized picture
+    * @param integer $new_width   new width after resized (default 71)
+    * @param integer $new_height  new height after resized (default 71)
+    * @param integer $img_y       y axis of picture (default 0)
+    * @param integer $img_x       x axis of picture (default 0)
+    * @param integer $img_width   width of picture (default 0)
+    * @param integer $img_height  height of picture (default 0)
+    * @param integer $max_size    max size of the picture (default 500, is set to 0 no resize)
+    *
+    * @return boolean
     */
    static function resizePicture($source_path, $dest_path, $new_width = 71, $new_height = 71,
                                  $img_y = 0, $img_x = 0, $img_width = 0, $img_height = 0, $max_size = 500) {
@@ -1284,7 +1286,7 @@ class Toolbox {
     *                                        (false by default)
     *
     * @return string explaining the result
-   **/
+    */
    static function checkNewVersionAvailable($auto = true, $messageafterredirect = false) {
       global $CFG_GLPI;
 
@@ -1374,7 +1376,7 @@ class Toolbox {
     * Determine if Imap/Pop is usable checking extension existence
     *
     * @return boolean
-   **/
+    */
    static function canUseImapPop() {
       return extension_loaded('imap');
    }
@@ -1384,17 +1386,21 @@ class Toolbox {
     * Determine if Ldap is usable checking ldap extension existence
     *
     * @return boolean
-   **/
+    */
    static function canUseLdap() {
       return extension_loaded('ldap');
    }
 
 
    /**
-    * Check Write Access to a directory
+    * Check Write Access to a directory returning the following values
+    *  2: creation error
+    *  1: delete error
+    *  0: OK
     *
-    * @param $dir string: directory to check
-    * @return integer 2 : creation error 1 : delete error 0: OK
+    * @param string $dir directory to check
+    *
+    * @return integer
     */
    static function testWriteAccessToDirectory($dir) {
 
@@ -1434,10 +1440,9 @@ class Toolbox {
    /**
     * Get form URL for itemtype
     *
-    * @param $itemtype  string   item type
-    * @param bool|path $full path or relative one (true by default)
+    * @param string  $itemtype
+    * @param boolean $full path or relative one (true by default)
     *
-    * return string itemtype Form URL
     * @return string
     */
    static function getItemTypeFormURL($itemtype, $full = true) {
@@ -1464,10 +1469,9 @@ class Toolbox {
    /**
     * Get search URL for itemtype
     *
-    * @param $itemtype  string   item type
-    * @param bool|path $full path or relative one (true by default)
+    * @param string  $itemtype
+    * @param boolean $full path or relative one (true by default)
     *
-    * return string itemtype search URL
     * @return string
     */
    static function getItemTypeSearchURL($itemtype, $full = true) {
@@ -1499,10 +1503,9 @@ class Toolbox {
    /**
     * Get ajax tabs url for itemtype
     *
-    * @param $itemtype  string   item type
-    * @param bool|path $full path or relative one (true by default)
+    * @param string  $itemtype
+    * @param boolean $full path or relative one (true by default)
     *
-    * return string itemtype tabs URL
     * @return string
     */
    static function getItemTypeTabsURL($itemtype, $full = true) {
@@ -1519,10 +1522,10 @@ class Toolbox {
     *
     * @param integer $length of the random string
     *
-    * @return random string
+    * @return string
     *
     * @see https://stackoverflow.com/questions/4356289/php-random-string-generator/31107425#31107425
-   **/
+    */
    static function getRandomString($length) {
       $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
       $str = '';
@@ -1537,10 +1540,10 @@ class Toolbox {
    /**
     * Split timestamp in time units
     *
-    * @param $time integer: timestamp
+    * @param integer $time timestamp
     *
-    * @return string
-   **/
+    * @return mixed
+    */
    static function getTimestampTimeUnits($time) {
 
       $time          = round(abs($time));
@@ -1576,8 +1579,8 @@ class Toolbox {
     * @param string  $msgerr set if problem encountered (default NULL)
     * @param integer $rec    internal use only Must be 0 (default 0)
     *
-    * @return content of the page (or empty)
-   **/
+    * @return string
+    */
    static function getURLContent ($url, &$msgerr = null, $rec = 0) {
       $content = self::callCurl($url);
       return $content;
@@ -1707,9 +1710,7 @@ class Toolbox {
     * Compute end if duration is set
     *
     * @param $data array data to process
-    *
-    * @return processed datas
-   **/
+    */
    static function manageBeginAndEndPlanDates(&$data) {
 
       if (!isset($data['end'])) {
@@ -1727,7 +1728,7 @@ class Toolbox {
     * Manage login redirection
     *
     * @param $where string: where to redirect ?
-   **/
+    */
    static function manageRedirect($where) {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
@@ -1905,7 +1906,7 @@ class Toolbox {
     * @return array of parsed arguments (address, port, mailbox, type, ssl, tls, validate-cert
     *         norsh, secure and debug) : options are empty if not set
     *                                    and options have boolean values if set
-   **/
+    */
    static function parseMailServerConnectString($value, $forceport = false) {
 
       $tab = [];
@@ -1984,11 +1985,11 @@ class Toolbox {
    /**
     * Display a mail server configuration form
     *
-    * @param $value String host connect string ex
+    * @param $value string host connect string ex
     *                      {localhost:993/imap/ssl}INBOX
     *
     * @return string type of the server (imap/pop)
-   **/
+    */
    static function showMailServerConfig($value) {
 
       if (!Config::canUpdate()) {
@@ -2195,7 +2196,7 @@ class Toolbox {
     * @param $datas     array    to search to search
     *
     * @return boolean : string founded ?
-   **/
+    */
    static function inArrayCaseCompare($string, $datas = []) {
 
       if (count($datas)) {
@@ -2216,8 +2217,8 @@ class Toolbox {
     *
     * @param $integer string   integer string
     *
-    * @return clean integer
-   **/
+    * @return mixed
+    */
    static function cleanInteger($integer) {
       return preg_replace("/[^0-9-]/", "", $integer);
    }
@@ -2230,8 +2231,8 @@ class Toolbox {
     *
     * @param $decimal string    float string
     *
-    * @return clean integer
-   **/
+    * @return mixed
+    */
    static function cleanDecimal($decimal) {
       return preg_replace("/[^0-9\.-]/", "", $decimal);
    }
@@ -2244,8 +2245,8 @@ class Toolbox {
     *
     * @param $string string     string to clean
     *
-    * @return clean string
-   **/
+    * @return mixed
+    */
    static function cleanNewLines($string) {
 
       $string = preg_replace("/\r\n/", " ", $string);
@@ -2263,7 +2264,7 @@ class Toolbox {
     * @param string $lang Language to install
     *
     * @return void
-   **/
+    */
    static function createSchema($lang = 'en_GB') {
       global $CFG_GLPI, $DB;
 
@@ -2304,7 +2305,7 @@ class Toolbox {
     * @param $content   string   config file content
     *
     * @return boolean
-   **/
+    */
    static function writeConfig($name, $content) {
 
       $name = GLPI_CONFIG_DIR . '/'.$name;
@@ -2330,7 +2331,7 @@ class Toolbox {
     * @since version 0.83.91
     *
     * @return string encoded array
-   **/
+    */
    static function prepareArrayForInput(array $value) {
       return base64_encode(json_encode($value));
    }
@@ -2343,8 +2344,8 @@ class Toolbox {
     *
     * @since version 0.83.91
     *
-    * @return string decoded array
-   **/
+    * @return array|mixed
+    */
    static function decodeArrayFromInput($value) {
 
       if ($dec = base64_decode($value)) {
@@ -2361,7 +2362,7 @@ class Toolbox {
     *
     * @since version 0.84.2
     *
-   **/
+    */
    static function checkValidReferer() {
       global $CFG_GLPI;
 
@@ -2413,16 +2414,16 @@ class Toolbox {
     * Check if the given object is of the type $class_name. Can be identical or a subclass.
     * This method emulates PHP 5.3.9: is_a with allow_string == true
     *
-    * @todo: remove when prerequisite > 5.3.9 !
+    * @todo  : remove when prerequisite > 5.3.9 !
     *
     * @since version 0.85
     *
-    * @param $object        can be an object or a string contining the class name
-    * @param $class_name    the name of the class to compare
+    * @param object|string $object     can be an object or a string contining the class name
+    * @param string        $class_name the name of the class to compare
     *
-    * @return true if $object is an instance of $class_name
+    * @return boolean
     *
-   **/
+    */
    static function is_a($object, $class_name) {
 
       if (is_object($object)) {
@@ -2509,7 +2510,7 @@ class Toolbox {
    /**
     * Remove accentued characters and return lower case string
     *
-    * @param string $string String to handle
+    * @param string $string string to handle
     *
     * @return string
     */
@@ -2528,7 +2529,7 @@ class Toolbox {
    /**
     * Slugify
     *
-    * @param string $string String to slugify
+    * @param string $string string to slugify
     *
     * @return string
     */
@@ -2558,7 +2559,7 @@ class Toolbox {
     * @param array $doc_data        list of filenames and tags
     *
     * @return string                the $content_text param after parsing
-   **/
+    */
    static function convertTagToImage($content_text, CommonDBTM $item, $doc_data = []) {
       global $CFG_GLPI;
 
@@ -2659,9 +2660,10 @@ class Toolbox {
     *
     * @since version 9.2
     *
-    * @param $content_html   html content of input
-    * @param bool|force $force_update force update of content in item (false by default)
-    * @return html content
+    * @param string  $content_html content of input
+    * @param boolean $force_update force update of content in item (false by default)
+    *
+    * @return mixed|string
     */
    static function convertImageToTag($content_html, $force_update = false) {
 
@@ -2688,7 +2690,7 @@ class Toolbox {
     * @param array $tags       list of tags to clen
     *
     * @return html content
-   **/
+    */
    static function cleanTagOrImage($content, array $tags) {
       global $CFG_GLPI;
 
@@ -2742,8 +2744,8 @@ class Toolbox {
     *
     * @since 9.1.5
     *
-    * @param string $haystack String to check
-    * @param string $needle   String to find
+    * @param string $haystack string to check
+    * @param string $needle   string to find
     *
     * @return boolean
     */
@@ -2757,8 +2759,8 @@ class Toolbox {
     *
     * @since 9.2
     *
-    * @param string $haystack String to check
-    * @param string $needle   String to find
+    * @param string $haystack string to check
+    * @param string $needle   string to find
     *
     * @return boolean
     */
@@ -2876,7 +2878,7 @@ class Toolbox {
     * @param string $link link to format
     *
     * @return string formatted link.
-    **/
+     */
    public static function formatOutputWebLink($link) {
       if (!preg_match("/^https?/", $link)) {
          return "http://".$link;
