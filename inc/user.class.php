@@ -1242,9 +1242,6 @@ class User extends CommonDBTM {
    }
 
 
-   /**
-    * @see CommonDBTM::getRawName()
-   **/
    function getRawName() {
       global $CFG_GLPI;
 
@@ -2582,9 +2579,6 @@ class User extends CommonDBTM {
    }
 
 
-   /**
-    * @see CommonDBTM::getSpecificMassiveActions()
-   **/
    function getSpecificMassiveActions($checkitem = null) {
 
       $isadmin = static::canUpdate();
@@ -2635,11 +2629,6 @@ class User extends CommonDBTM {
    }
 
 
-   /**
-    * @since version 0.85
-    *
-    * @see CommonDBTM::processMassiveActionsForOneItemtype()
-   **/
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
 
@@ -3176,15 +3165,16 @@ class User extends CommonDBTM {
     *
     * Internaly used by showGroup_Users, dropdownUsers and ajax/getDropdownUsers.php
     *
-    * @param bool|true $count true if execute an count(*) (true by default)
-    * @param limit|string $right limit user who have specific right (default 'all')
-    * @param integer|Restrict $entity_restrict Restrict to a defined entity (default -1)
-    * @param default|int $value default value (default 0)
-    * @param $used             array   Already used items ID: not to display in dropdown
-    * @param pattern|string $search pattern (default '')
-    * @param integer|start $start start LIMIT value (default 0)
-    * @param integer|limit $limit limit LIMIT value (default -1 no limit)
-    * @return mysql result set.
+    * @param boolean $count           true if execute an count(*) (true by default)
+    * @param integer $right           limit user who have specific right (default 'all')
+    * @param integer $entity_restrict Restrict to a defined entity (default -1)
+    * @param integer $value           default value (default 0)
+    * @param array   $used            Already used items ID: not to display in dropdown
+    * @param string  $search          pattern (default '')
+    * @param integer $start           start LIMIT value (default 0)
+    * @param integer $limit           limit LIMIT value (default -1 no limit)
+    *
+    * @return mysqli_result|boolean
     */
    static function getSqlSearchResult ($count = true, $right = "all", $entity_restrict = -1, $value = 0,
                                        $used = [], $search = '', $start = 0, $limit = -1) {
@@ -4382,7 +4372,7 @@ class User extends CommonDBTM {
    /**
     * Get fields to display in the unicity error message
     *
-    * @return an array which contains field => label
+    * @return array which contains field => label
    **/
    function getUnicityFieldsToDisplayInErrorMessage() {
 
@@ -4573,11 +4563,6 @@ class User extends CommonDBTM {
    }
 
 
-   /**
-    * @since version 0.85
-    *
-    * @see commonDBTM::getRights()
-   **/
    function getRights($interface = 'central') {
 
       $values = parent::getRights();

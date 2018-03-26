@@ -79,8 +79,6 @@ class Item_Devices extends CommonDBRelation {
 
    /**
     * @since version 0.85
-    * @param integer $nb
-    * @return string
     */
    static function getTypeName($nb = 0) {
 
@@ -93,9 +91,7 @@ class Item_Devices extends CommonDBRelation {
 
    /**
     * @since version 0.85
-    *
-    * @see CommonDBTM::getForbiddenStandardMassiveAction()
-   **/
+    */
    function getForbiddenStandardMassiveAction() {
 
       $forbidden = parent::getForbiddenStandardMassiveAction();
@@ -1038,10 +1034,6 @@ class Item_Devices extends CommonDBRelation {
 
    /**
     * @since version 0.85
-    *
-    * @see CommonGLPI::defineTabs()
-    * @param array $options
-    * @return array
     */
    function defineTabs($options = []) {
 
