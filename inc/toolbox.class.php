@@ -801,7 +801,7 @@ class Toolbox {
     * @param string $parent    This should be left blank (it is used internally by the function).
     *                          (default '')
     *
-    * @return string : Query string to append to a URL.
+    * @return string
     */
    static function append_params($array, $separator = '&', $parent = '') {
 
@@ -823,7 +823,7 @@ class Toolbox {
    /**
     * Compute PHP memory_limit
     *
-    * @param string $ininame name of the ini ooption to retrieve (since 9.1)
+    * @param string $ininame name of the ini option to retrieve (since 9.1)
     *
     * @return integer|string
     */
@@ -884,7 +884,12 @@ class Toolbox {
 
    /**
     * Common Checks needed to use GLPI
-    * @return integer 2 : creation error 1 : delete error 0: OK
+    * Returned values:
+    *    2: creation error
+    *    1: delete error
+    *    0: OK
+    *
+    * @return integer
     */
    static function commonCheckForUseGLPI() {
       global $CFG_GLPI;
@@ -1027,11 +1032,15 @@ class Toolbox {
 
    /**
     * Check SELinux configuration
+    * returned values meaning:
+    *    0: OK
+    *    1: Warning
+    *    2: Error
     *
     * @since version 0.84
     * @param $fordebug    boolean true is displayed in system information
     *
-    *  @return integer 0: OK, 1:Warning, 2:Error
+    * @return integer
     */
    static function checkSELinux($fordebug = false) {
       global $CFG_GLPI;
@@ -1110,9 +1119,9 @@ class Toolbox {
    /**
     * Get the filesize of a complete directory (from php.net)
     *
-    * @param $path string: directory or file to get size
+    * @param string $path directory or file to get size
     *
-    * @return integer size of the $path
+    * @return integer
     */
    static function filesizeDirectory($path) {
 
@@ -1138,9 +1147,9 @@ class Toolbox {
 
    /** Format a size passing a size in octet
     *
-    * @param   $size integer: Size in octet
+    * @param  integer $size size in octet
     *
-    * @return string formatted size
+    * @return string
     */
    static function getSize($size) {
 
@@ -1440,8 +1449,8 @@ class Toolbox {
    /**
     * Get form URL for itemtype
     *
-    * @param string  $itemtype
-    * @param boolean $full path or relative one (true by default)
+    * @param string  $itemtype name of the itemtype
+    * @param boolean $full     path or relative one (true by default)
     *
     * @return string
     */
@@ -1469,8 +1478,8 @@ class Toolbox {
    /**
     * Get search URL for itemtype
     *
-    * @param string  $itemtype
-    * @param boolean $full path or relative one (true by default)
+    * @param string  $itemtype name of the itemtype
+    * @param boolean $full     path or relative one (true by default)
     *
     * @return string
     */
@@ -1682,8 +1691,8 @@ class Toolbox {
 
 
    /**
-    * @param $need
-    * @param $tab
+    * @param mixed $need
+    * @param array $tab
     *
     * @return boolean
     */
@@ -2418,7 +2427,7 @@ class Toolbox {
     *
     * @since version 0.85
     *
-    * @param object|string $object     can be an object or a string contining the class name
+    * @param object|string $object     can be an object or a string containing the class name
     * @param string        $class_name the name of the class to compare
     *
     * @return boolean
@@ -2440,13 +2449,13 @@ class Toolbox {
 
 
    /**
-    * Retrieve the mime type of a file
+    * Retrieve the mime type of a file, if type is not given the function will return a boolean
     *
     * @since version 0.85.5
     *
     * @param $file   string      path of the file
     * @param boolean|string $type string      check if $file is the correct type (false by default)
-    * @return string (if $type not given) else boolean
+    * @return string|boolean
     *
     */
    static function getMime($file, $type = false) {
@@ -2470,10 +2479,10 @@ class Toolbox {
     *
     * @since version 9.1
     *
-    * @param mixed $needle
-    * @param array $haystack
-    * @param boolean  $strict: If strict is set to TRUE then it will also
-    *              check the types of the needle in the haystack.
+    * @param mixed   $needle
+    * @param array   $haystack
+    * @param boolean $strict   If strict is set to TRUE then it will also check the types of the
+    *                          needle in the haystack.
     * @return boolean
     */
    static function in_array_recursive($needle, $haystack, $strict = false) {
@@ -2687,9 +2696,9 @@ class Toolbox {
     * @since version 9.2
     *
     * @param string $content   html content of input
-    * @param array $tags       list of tags to clen
+    * @param array $tags       list of tags to clean
     *
-    * @return html content
+    * @return array|mixed|string
     */
    static function cleanTagOrImage($content, array $tags) {
       global $CFG_GLPI;

@@ -831,7 +831,7 @@ class CommonDBTM extends CommonGLPI {
     *
     * @param array $default values used if session is empty
     *
-    * @return array of value
+    * @return array
     */
    protected function restoreInput(Array $default = []) {
 
@@ -3513,8 +3513,8 @@ class CommonDBTM extends CommonGLPI {
     * @since version 0.85
     *
     * @param MassiveAction $ma   the current massive action object
-    * @param CommonDBTM    $item on which apply the massive action
-    * @param array         $ids  of the item on which apply the action
+    * @param CommonDBTM    $item the item on which apply the massive action
+    * @param array         $ids  an array of the ids of the item on which apply the action
     *
     * @return void (direct submit to $ma object)
     */
@@ -3546,7 +3546,7 @@ class CommonDBTM extends CommonGLPI {
     *
     * @param object|null $checkitem link item to check right (default NULL)
     *
-    * @return array of massive actions
+    * @return array
     */
    function getSpecificMassiveActions($checkitem = null) {
 

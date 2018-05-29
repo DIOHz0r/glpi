@@ -128,8 +128,8 @@ class Html {
    /**
     * Convert a date YY-MM-DD to DD-MM-YY for calendar
     *
-    * @param mixed $time date to convert
-    * @param mixed $format
+    * @param mixed $time datetime to convert
+    * @param string|null $format (default null)
     *
     * @return null|string
     */
@@ -177,8 +177,8 @@ class Html {
    /**
     * Convert a date YY-MM-DD HH:MM to DD-MM-YY HH:MM for display in a html table
     *
-    * @param mixed $time date to convert
-    * @param mixed $format
+    * @param mixed $time datetime to convert
+    * @param string|null $format (default null)
     *
     * @return null|string $time or $date
     */
@@ -197,7 +197,7 @@ class Html {
     *
     * @param string $string input text
     *
-    * @return string
+    * @return mixed
     */
    static function cleanInputText($string) {
       return preg_replace( '/\'/', '&apos;', preg_replace('/\"/', '&quot;', $string));
@@ -209,7 +209,7 @@ class Html {
     *
     * @param string $url
     *
-    * @return string
+    * @return mixed
     */
    static function cleanParametersURL($url) {
 
@@ -223,7 +223,7 @@ class Html {
     *
     * @param $value string or array
     *
-    * @return array|string of value (same struct as input)
+    * @return array|string
     */
    static function nl2br_deep($value) {
 
@@ -302,7 +302,7 @@ class Html {
     *                               (false by default)
     * @param $forcedecimal integer  Force decimal number (do not use default value) (default -1)
     *
-    * @return string
+    * @return mixed|string
     */
    static function formatNumber($number, $edit = false, $forcedecimal = -1) {
       global $CFG_GLPI;
@@ -426,7 +426,7 @@ class Html {
     *
     * @param $value string value
     *
-    * @return mixed
+    * @return mixed|string
     */
    static function weblink_extract($value) {
 
@@ -448,8 +448,8 @@ class Html {
    /**
     * Redirection hack
     *
-    * @param $dest string: Redirection destination
-    * @param integer|string $http_response_code string: Forces the HTTP response code to the specified value
+    * @param string $dest                  Redirection destination
+    * @param integer $http_response_code   Forces the HTTP response code to the specified value
     * @return void
     */
    static function redirect($dest, $http_response_code = 302) {
@@ -917,7 +917,7 @@ class Html {
     * @param $additionalactions  string   additional actions to do on success confirmation
     *                                     (default '')
     *
-    * @return string confirmation script
+    * @return string
     */
    static function getConfirmationOnActionScript($string, $additionalactions = '') {
 
@@ -1610,8 +1610,8 @@ class Html {
    /**
     * Print a simple HTML head with links
     *
-    * @param string $title        of the page
-    * @param string $links array  of links to display
+    * @param string $title title of the page
+    * @param array  $links array of links to display
     */
    static function simpleHeader($title, $links = []) {
       global $CFG_GLPI, $HEADER_LOADED;
@@ -1674,7 +1674,7 @@ class Html {
    /**
     * Print a nice HTML head for help page
     *
-    * @param string $title of the page
+    * @param string $title title of the page
     * @param string $url   not used anymore (default '')
     */
    static function helpHeader($title, $url = '') {
@@ -1827,7 +1827,7 @@ class Html {
    /**
     * Print a nice HTML head for modal window (nothing to display)
     *
-    * @param string  $title   of the page
+    * @param string  $title   title of the page
     * @param string  $url     not used anymore (default '')
     * @param boolean $iframed indicate if page loaded in iframe - css target (default false)
     */
@@ -2150,7 +2150,7 @@ class Html {
 
 
    /**
-    * Get a checkbox.
+    * Get HTML code for a checkbox.
     *
     * @since version 0.85
     *
@@ -2166,7 +2166,7 @@ class Html {
     *                - specific_tags HTML5 tags to add
     *                - criterion     the criterion for massive checkbox
     *
-    * @return string HTML code for the checkbox
+    * @return string
     */
    static function getCheckbox(array $options) {
       global $CFG_GLPI;
@@ -2521,8 +2521,8 @@ class Html {
     *
     * @since version 0.84
     *
-    * @param string $name     of the element
-    * @param        $options  array of possible options:
+    * @param string $name     name of the element
+    * @param array  $options  possible key values:
     *                         - value      : default value to display (default '')
     *                         - maybeempty : may be empty ? (true by default)
     *                         - canedit    :  could not modify element (true by default)
@@ -2632,8 +2632,8 @@ class Html {
     *
     * @since version 0.85
     *
-    * @param string $name     of the element
-    * @param array  $options  possible:
+    * @param string $name     name of the element
+    * @param array  $options  possible key values:
     *                         - value : default value to display (default '')
     *                         - display : boolean display or get string (default true)
     *                         - rand : specific random value (default generated one)
@@ -3251,18 +3251,17 @@ class Html {
     * Show a tooltip on an item
     *
     * @param string $content to put in the tooltip
-    * @param array $options possible:
-    *   - applyto : string / id of the item to apply tooltip (default empty).
-    *                  If not set display an icon
-    *   - title : string / title to display (default empty)
-    *   - contentid : string / id for the content html container (default auto generated) (used for ajax)
-    *   - link : string / link to put on displayed image if contentid is empty
-    *   - linkid : string / html id to put to the link link (used for ajax)
-    *   - linktarget : string / target for the link
-    *   - popup : string / popup action : link not needed to use it
-    *   - img : string / url of a specific img to use
-    *   - display : boolean / display the item : false return the datas
-    *   - autoclose : boolean / autoclose the item : default true (false permit to scroll)
+    * @param array  $options possible key values:
+    *                        - applyto : string / id of the item to apply tooltip (default empty). If not set display an icon
+    *                        - title : string / title to display (default empty)
+    *                        - contentid : string / id for the content html container (default auto generated) (used for ajax)
+    *                        - link : string / link to put on displayed image if contentid is empty
+    *                        - linkid : string / html id to put to the link link (used for ajax)
+    *                        - linktarget : string / target for the link
+    *                        - popup : string / popup action : link not needed to use it
+    *                        - img : string / url of a specific img to use
+    *                        - display : boolean / display the item : false return the datas
+    *                        - autoclose : boolean / autoclose the item : default true (false permit to scroll)
     *
     * @return string
     */
@@ -3367,8 +3366,8 @@ class Html {
     * Show div with auto completion
     *
     * @param CommonDBTM $item    object used for create dropdown
-    * @param string     $field   to search for autocompletion
-    * @param array      $options array of possible options:
+    * @param string     $field   field to search for autocompletion
+    * @param array      $options possible key values:
     *    - name    : string / name of the select (default is field parameter)
     *    - value   : integer / preselected value (default value of the item object)
     *    - size    : integer / size of the text field
@@ -3463,13 +3462,12 @@ class Html {
    /**
     * Init the Editor System to a textarea
     *
-    * @param string  $name     of the html textarea to use
-    * @param string  $rand     of the html textarea to use (if empty no image paste system)(default
-    *                          '')
-    * @param boolean $display  boolean display or get js script (true by default)
-    * @param boolean $readonly boolean editor will be readonly or not
+    * @param string  $name     the html textarea to use
+    * @param string  $rand     the html textarea to use (if empty no image paste system)(default '')
+    * @param boolean $display  choose if display or get js script (true by default)
+    * @param boolean $readonly editor will be readonly or not
     *
-    * @return void
+    * @return string
     */
    static function initEditorSystem($name, $rand = '', $display = true, $readonly = false) {
       global $CFG_GLPI;
@@ -3585,7 +3583,7 @@ class Html {
     * @param string $content content to convert in html
     * @param string $rand used for randomize tinymce dom id
     * @param boolean $readonly true will set editor in readonly mode
-    * @return string $content
+    * @return string
     */
    static function setRichTextContent($name, $content, $rand, $readonly = false) {
 
@@ -4393,7 +4391,7 @@ class Html {
     * @since version 0.85
     *
     * @param string $path    to the image file
-    * @param array  $options of HTML attributes
+    * @param array  $options HTML attributes
     *                        - `url` If provided an image link will be generated and the link will
     *                        point at `$options['url']`.
     *
@@ -4440,7 +4438,7 @@ class Html {
     *
     * @param string $text    the content to be wrapped by a tags.
     * @param string $url     URL parameter
-    * @param array  $options of HTML attributes:
+    * @param array  $options HTML attributes:
     *                        - `confirm` JavaScript confirmation message.
     *                        - `confirmation` optional action to do on confirmation
     *
@@ -4482,7 +4480,7 @@ class Html {
     * @since version 0.85
     *
     * @param string $fieldName
-    * @param array  $options of HTML attributes.
+    * @param array  $options   HTML attributes.
     *
     * @return string A generated hidden input
     */
@@ -4508,7 +4506,7 @@ class Html {
     * @since version 0.85
     *
     * @param string $fieldName
-    * @param array  $options of HTML attributes.
+    * @param array  $options   HTML attributes.
     *
     * @return string A generated hidden input
     */
@@ -4525,7 +4523,7 @@ class Html {
     *
     * @since version 0.85
     *
-    * @param string $caption of the input
+    * @param string $caption caption of the input
     * @param array  $options possible values:
     *                        - image, will use a submit image input
     *                        - confirm, JavaScript confirmation message.
@@ -4671,11 +4669,11 @@ class Html {
     * @since version 0.85
     * @since 9.2 Path is now relative to GLPI_ROOT. Add $minify parameter.
     *
-    * @param string $url File to include (relative to GLPI_ROOT)
-    * @param array $options of HTML attributes
-    * @param boolean $minify Try to load minified file (defaults to true)
+    * @param string  $url     file to include (relative to GLPI_ROOT)
+    * @param array   $options HTML attributes
+    * @param boolean $minify  try to load minified file (defaults to true)
     *
-    * @return string of script tags
+    * @return string
     */
    static function script($url, $options = [], $minify = true) {
       $version = GLPI_VERSION;
@@ -4705,7 +4703,7 @@ class Html {
     * @since 9.2 Path is now relative to GLPI_ROOT. Add $minify parameter.
     *
     * @param string  $url     File to include (raltive to GLPI_ROOT)
-    * @param array   $options of HTML attributes
+    * @param array   $options HTML attributes
     * @param boolean $minify  Try to load minified file (defaults to true)
     *
     * @return string CSS link tag
@@ -4945,7 +4943,7 @@ class Html {
    }
 
    /**
-    * Display an html textarea  with extended options
+    * Display an html textarea with extended options
     *
     * @since 9.2
     *
@@ -4961,7 +4959,7 @@ class Html {
     *  - cols (int):                 textarea cols attribute (witdh)
     *  - rows (int):                 textarea rows attribute (height)
     *
-    * @return mixed          the html if display paremeter is false or true
+    * @return mixed
     */
    static function textarea($options = []) {
       //default options
@@ -5025,19 +5023,21 @@ class Html {
     * Display choice matrix
     *
     * @since version 0.85
-    * @param array $columns field name => column label
-    * @param array $rows of field name => array(
-    *      'label' the label of the row
-    *      'columns' an array of specific information regaring current row
-    *                and given column indexed by column field_name
-    *                 * a string if only have to display a string
-    *                 * an array('value' => ???, 'readonly' => ???) that is used to Dropdown::showYesNo()
-    * @param array $options possible:
-    *       'title'         of the matrix
-    *       'first_cell'    the content of the upper-left cell
-    *       'row_check_all' set to true to display a checkbox to check all elements of the row
-    *       'col_check_all' set to true to display a checkbox to check all elements of the col
-    *       'rand'          random number to use for ids
+    * @param array $columns   field name => column label
+    * @param array $rows      field name => array(
+    *                         'label' the label of the row
+    *                         'columns' an array of specific information regaring current row and
+    *                         given column indexed by column field_name
+    *                            - a string if only have to display a string
+    *                            - an array('value' => ???, 'readonly' => ???) that is used to Dropdown::showYesNo()
+    * @param array $options   possible:
+    *                         'title'         of the matrix
+    *                         'first_cell'    the content of the upper-left cell
+    *                         'row_check_all' set to true to display a checkbox to check all
+    *                         elements of the row
+    *                         'col_check_all' set to true to display a checkbox to check all
+    *                         elements of the col
+    *                         'rand'          random number to use for ids
     *
     * @return integer
     */
@@ -5477,7 +5477,7 @@ class Html {
     * @since version 9.2
     *
     * @param string  $tag       the tag identifier of the document
-    * @param integer $width     witdh of the final image
+    * @param integer $width     width of the final image
     * @param integer $height    height of the final image
     * @param boolean $addLink   boolean, do we need to add an anchor link
     * @param string  $more_link append to the link (ex &test=true)

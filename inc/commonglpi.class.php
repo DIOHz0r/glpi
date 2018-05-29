@@ -242,7 +242,7 @@ class CommonGLPI {
 
 
    /**
-    * get an array of menu content or false on empty
+    * get menu content or false on empty
     *
     * @since version 0.85
     *
@@ -314,7 +314,7 @@ class CommonGLPI {
 
 
    /**
-    * get additional menu content
+    * get additional menu content (false by default)
     *
     * @since version 0.85
     *
@@ -330,7 +330,7 @@ class CommonGLPI {
     *
     * @since version 0.85
     *
-    * @return array of forbidden actions
+    * @return array
    **/
    static function getForbiddenActionsForMenu() {
       return [];
@@ -338,7 +338,7 @@ class CommonGLPI {
 
 
    /**
-    * Get additional menu options
+    * Get additional menu options (false by default)
     *
     * @since version 0.85
     *
@@ -493,7 +493,7 @@ class CommonGLPI {
     * @param string  $text text to display
     * @param integer $nb   number of items (default 0)
     *
-    * @return string containing the tabs
+    * @return string
     */
    static function createTabEntry($text, $nb = 0) {
 
@@ -1232,7 +1232,7 @@ class CommonGLPI {
     * @since version 0.85
     *
     * @param integer $error error type see define.php for ERROR_*
-    * @param string $object to use instead of item link (default '')
+    * @param string $object string to use instead of item link (default '')
     * @return string
     */
    function getErrorMessage($error, $object = '') {
